@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Franchising Infographic</title>
+  <!-- Tailwind via CDN (fine for now) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js and registerables -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Make sure Chart.js knows about all built-in pieces
+    window.addEventListener('DOMContentLoaded', () => {
+      Chart.register(...Chart.registerables);
+    });
+  </script>
+  <style>
+    body { font-family: sans-serif; background: #f0f4f8; }
+    .chart-container { width: 90%; max-width: 600px; height: 300px; margin: 2rem auto; }
+  </style>
+</head>
+<body class="p-4">
+
+  <h1 class="text-2xl text-center mb-4">Franchise Market Size (2019–2025)</h1>
+  <div class="chart-container">
+    <canvas id="marketChart"></canvas>
+  </div>
+
+  <script>
+    // Wait for DOM + Chart.registerables to be ready
+    window.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('marketChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2019','2020','2021','2022','2023','2024','2025'],
+          datasets: [{
+            label: 'AUD Billion',
+            data: [190.5,188.6,186.7,184.8,182.9,197.8,201.2],
+            borderColor: '#06D6A0',
+            backgroundColor: 'rgba(6,214,160,0.2)',
+            tension: 0.2,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
